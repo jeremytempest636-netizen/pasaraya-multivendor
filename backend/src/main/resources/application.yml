@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: multivendor
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/multivendor}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+app:
+  jwt:
+    # Wajib diganti di production (minimal 32 karakter)
+    secret: ${JWT_SECRET:ganti-secret-ini-di-production-minimal-32-karakter-acak-0123456789}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
+  # Isi data contoh (kategori, toko, produk, akun demo) saat database masih kosong
+  seed: ${SEED_DEMO_DATA:true}
